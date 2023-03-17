@@ -1,10 +1,10 @@
 package com.bridgelabz;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class AddressBook {
     ArrayList<Contact> contacts = new ArrayList<>();
+
     private String addressBookName;
     public String getAddressBookName() {
         return addressBookName;
@@ -19,7 +19,9 @@ public class AddressBook {
     @Override
     public String toString() {
         return "AddressBook{" +
-                "addressBookName='" + addressBookName + '\'' +
+                "\naddressBookName= " + addressBookName +
+                ", contacts= " + contacts +
+                 '\n' +
                 '}';
     }
 
@@ -39,7 +41,9 @@ public class AddressBook {
         System.out.print("Enter the State: ");
         contact.setState(in.nextLine());
 
+        contacts.add(contact);
         System.out.println("Contact Added!!!");
-        System.out.println(contact.toString());
+        System.out.println(contact);
+        System.out.println();
     }
 }

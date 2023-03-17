@@ -47,14 +47,15 @@ public class Contact {
         this.state = state;
     }
 
+
     @Override
     public String toString() {
-        return "Contact{" +
+        return "\nContact{" +
                 "name='" + name + '\'' +
                 ", age='" + age + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
-                '}';
+                "}";
     }
 }
