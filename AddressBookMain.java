@@ -1,11 +1,11 @@
 package com.bridgelabz;
 
-
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class AddressBookMain {
-    ArrayList<AddressBook> Dictionary= new ArrayList<>();
+    Map<String,AddressBook> Dictionary= new HashMap<>();
     Scanner in = new Scanner(System.in);
 
 
@@ -15,7 +15,7 @@ public class AddressBookMain {
         System.out.println("Enter the name of the address book: ");
         addressBook.setAddressBookName(in.nextLine());
 
-        Dictionary.add(addressBook);
+        Dictionary.put(addressBook.getAddressBookName(),addressBook);
         System.out.println(addressBook);
         System.out.println("Address Book Added!!!");
         System.out.println();
@@ -23,26 +23,35 @@ public class AddressBookMain {
 
     public void addContacts() {
         System.out.println("Enter the name of the address book you want to add contact:");
-        String Aname = in.nextLine();
+        String name = in.nextLine();
 
-        for(int i=0;i< Dictionary.size();i++) {
-            AddressBook Temp= Dictionary.get(i);
-            if(Temp.getAddressBookName().equals(Aname)){
-                Temp.addContact();
-                System.out.println(Temp);
-                System.out.println("Contact Added!!!");
-                System.out.println();
-            }
-            else
-                System.out.println("Address Book not found!!!");
+        if(Dictionary.containsKey(name)) {
+            AddressBook Temp= Dictionary.get(name);
+            Temp.addContact();
+            System.out.println(Temp);
+            System.out.println("Contact Added!!!");
+            System.out.println();
         }
+        else
+            System.out.println("Given Address Book not Found!!!\n");
+    }
+
+    public void displayAddressBook(){
+        System.out.println("Enter the name of the address book you want to Display:");
+        String name = in.nextLine();
+        if(Dictionary.containsKey(name)) {
+            AddressBook Temp = Dictionary.get(name);
+            System.out.println(Temp);
+        }
+        else
+            System.out.println("Given Address Book not Found!!!\n");
     }
 
 
     @Override
     public String toString() {
         return "AddressBookMain{" +
-                "\nDictionary=" + Dictionary +
+                "Dictionary=\n" + Dictionary +
                 '}';
     }
 
@@ -54,7 +63,9 @@ public class AddressBookMain {
             System.out.println("******************MENU:******************");
             System.out.println("=> To Add Address Book: PRESS 1");
             System.out.println("=> To Add Contact: PRESS 2");
-            System.out.println("=> To EXIT: PRESS 3");
+            System.out.println("=> To Display Dictionary of Address Books: PRESS 3");
+            System.out.println("=> To Display Address Books Of Contacts: PRESS 4");
+            System.out.println("=> To EXIT: PRESS 5");
             int choice = in.nextInt();
 
             switch (choice) {
@@ -66,6 +77,11 @@ public class AddressBookMain {
                 case 2:
                     addressBookMain.addContacts();
                     break;
+                case 3:
+                    System.out.println(addressBookMain);
+                    break;
+                case 4:
+                    addressBookMain.displayAddressBook();
                 default:
                     status=false;
                     break;
